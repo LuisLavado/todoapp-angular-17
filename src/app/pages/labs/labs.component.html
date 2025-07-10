@@ -1,0 +1,52 @@
+<div class="container">
+  <h1 style="text-align: center">Hola es mi primer proyecto en Angular 17</h1>
+  <h3 style="text-align: center">{{ welcome }}</h3>
+
+  <div style="display: flex; justify-content: space-around">
+    <div>
+      <ul>
+        <li *ngFor="let task of tasksSimples">
+          {{ task }}
+        </li>
+      </ul>
+
+      <ul>
+        <li *ngFor="let task of tasks">
+          {{ task.title }} - {{ task.completed ? "Completada" : "Pendiente" }}
+        </li>
+      </ul>
+    </div>
+    <div>
+      <h4>{{ "Hola".repeat(5) }}</h4>
+      <p>La suma de 3 + 3 es {{ 3 + 3 }}</p>
+      <p>Hola soy {{ name }} y mi edad es {{ age }}</p>
+    </div>
+  </div>
+
+  <hr />
+
+  <div style="display: flex">
+    <div style="width: 50%">
+      <div style="width: 300px; height: 300px; padding: 1rem">
+        <img [src]="img" alt="Placeholder Image" srcset="" />
+      </div>
+      <input type="text" [value]="name" />
+      <button [disabled]="disabled">Click me</button>
+    </div>
+    <div style="width: 50%">
+      <div style="width: 300px; height: 300px; padding: 1rem">
+        <img
+          [src]="person.avatar"
+          alt="Placeholder Image"
+          srcset=""
+          style="width: 300px; height: 300px"
+        />
+      </div>
+      <input type="text" [value]="person.name" />
+      <button (click)="clickHandler()">Click me</button>
+      <button (dblclick)="clickHandler()">Double Click</button>
+      <p>(change)</p>
+      <input type="number" [value]="person.age" (change)="changeHandler($event)">
+    </div>
+  </div>
+</div>
