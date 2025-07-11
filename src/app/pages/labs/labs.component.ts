@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -24,22 +24,46 @@ export class LabsComponent {
   age = 30;
   disabled = true;
   img = 'https://angular.io/assets/images/logos/angular/angular.svg';
-  person = {
+  person = signal({
     name: 'Luis Lavado Llaro',
     age: 30,
     avatar: 'https://w3schools.com/howto/img_avatar.png'
-  };
+  });
 
   clickHandler() {
     alert("Realiza una accion");
   }
 
   changeHandler(event: Event) {
-    console.log(event);
+    const input = event.target as HTMLInputElement;
+    const newValue = input.value;
+    this.name = newValue;
   }
 
   keydownHandler(event: KeyboardEvent) {
     const input = event.target as HTMLInputElement;
     console.log(input.value);
   }
+
+ changeAge(event: Event) {
+    const input = event.target as HTMLInputElement;
+    const newValue = input.value;
+    this.person.update(prevState => {
+      return {
+        ...prevState,
+        age: parseInt(newValue)
+      }
+    });
+  }  
+ 
+  changeName(event: Event) {
+    const input = event.target as HTMLInputElement;
+    const newValue = input.value;
+    this.person.update(prevState => {
+      return {
+        ...prevState,
+        name: newValue
+      }
+    });
+  }  
 }

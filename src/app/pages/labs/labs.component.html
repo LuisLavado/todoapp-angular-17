@@ -26,33 +26,81 @@
   <hr />
 
   <div style="display: flex">
-    <div style="width: 50%">
+    <div style="width: 30%">
       <div style="width: 300px; height: 300px; padding: 1rem">
         <img [src]="img" alt="Placeholder Image" srcset="" />
       </div>
       <input type="text" [value]="name" />
       <button [disabled]="disabled">Click me</button>
     </div>
-    <div style="width: 50%">
+    <div style="width: 35%">
       <div style="width: 300px; height: 300px; padding: 1rem">
         <img
-          [src]="person.avatar"
+          [src]="person().avatar"
           alt="Placeholder Image"
           srcset=""
           style="width: 300px; height: 300px"
         />
       </div>
-      <input type="text" [value]="person.name" />
+      <input type="text" [value]="person().name" />
       <button (click)="clickHandler()">Click me</button>
       <button (dblclick)="clickHandler()">Double Click</button>
       <p>(change)</p>
-      <input type="number" [value]="person.age" (change)="changeHandler($event)">
+      <input
+        type="number"
+        [value]="person().age"
+        (change)="changeHandler($event)"
+      />
       <p>(change)</p>
-      <input type="text" [value]="person.name" (change)="changeHandler($event)">
+      <input
+        type="text"
+        [value]="person().name"
+        (change)="changeHandler($event)"
+      />
       <p>(keydown)</p>
-      <input type="text" [value]="person.name" (keydown)="keydownHandler($event)">
+      <input
+        type="text"
+        [value]="person().name"
+        (keydown)="keydownHandler($event)"
+      />
       <p>(keydown.shift)</p>
-      <input type="text" [value]="person.name" (keydown.shift.t)="clickHandler()">
+      <input
+        type="text"
+        [value]="person().name"
+        (keydown.shift.t)="clickHandler()"
+      />
+    </div>
+    <div style="width: 35%">
+      <div *ngIf="1 !== 1">Soy uno</div>
+      <input
+        type="number"
+        [value]="person().age"
+        (change)="changeAge($event)"
+      />
+      <div
+        *ngIf="
+          person().name === 'Luis Lavado Llaro' && person().age > 18;
+          else miBloque
+        "
+      >
+        Soy Luis Lavado Llaro y soy mayor de 18
+      </div>
+      <ng-template #miBloque>
+        Soy Luis Lavado Llaro y soy menor de 18
+      </ng-template>
+    </div>
+  </div>
+
+  <hr />
+  
+  <div>
+    <input type="text" [value]="person().name" (change)="changeName($event)" />
+    <div [ngSwitch]="person().name">
+      <p *ngSwitchCase="'luis'">Yo soy luis</p>
+      <p *ngSwitchCase="'julian'">Yo soy julian</p>
+      <p *ngSwitchCase="'ana'">Yo soy ana</p>
+      <p *ngSwitchCase="'valentina'">Yo soy valentina</p>
+      <p *ngSwitchDefault>Yo no soy nadie</p>
     </div>
   </div>
 </div>
