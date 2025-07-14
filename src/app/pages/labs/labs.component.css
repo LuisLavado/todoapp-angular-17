@@ -1,3 +1,68 @@
 .container {
     padding: 3rem;
 }
+
+.d-flex {
+    display: flex;
+}
+
+.f-wrap {
+    flex-wrap: wrap;
+}
+.f-nowrap {
+    flex-wrap: nowrap;
+}
+
+.p-1r {
+    padding: 1rem;
+}
+
+.px-1r {
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.py-1r {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.pt-1r {
+    padding-top: 1rem;
+}
+
+.pb-1r {
+    padding-bottom: 1rem;
+}
+
+/* start margin */
+.m-0 {
+    margin: 0;
+}
+
+.ml-1r {
+    margin-left: 1rem;
+}
+
+.mr-1r {
+    margin-right: 1rem;
+}
+
+.mt-1r {
+    margin-top: 1rem;
+}
+
+.mb-1r {
+    margin-bottom: 1rem;
+}
+/* start margin */
+
+.border {
+    border: 1px solid #121212;
+}
+
+.btn {
+    border-radius: .5rem;
+    border: 1px solid #121212;
+    padding: .5rem;
+}

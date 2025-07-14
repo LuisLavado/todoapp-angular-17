@@ -1,58 +1,244 @@
 <div class="container">
-  <h1 style="text-align: center">Hola es mi primer proyecto en Angular 17</h1>
-  <h3 style="text-align: center">{{ welcome }}</h3>
+  <div style="text-align: center">
+    <h1>{{ title }}</h1>
+  </div>
+
+  <div class="d-flex f-wrap" style="background-color: darkgray">
+    <!-- start Condicional IF -->
+    <div class="p-1r border">
+      <h2>Condicional IF</h2>
+      <div style="width: 100px; height: 100px">
+        <img
+          [src]="img"
+          style="width: 100%; height: 100%"
+          alt="Placeholder Image"
+        />
+      </div>
+      <div>
+        <label for="name">Framework:</label>
+        <input
+          type="text"
+          [value]="framework"
+          (change)="changeHandler($event)"
+        />
+      </div>
+      <div>
+        <label for="name">Versión:</label>
+        <input type="number" [value]="version" />
+      </div>
+      <button class="btn" (click)="clickHandler()" [disabled]="disabled">
+        Click me (disabled)
+      </button>
+      <div>
+        <p>Hola, soy {{ framework }} y mi versión es {{ version }}</p>
+      </div>
+      <div>
+        <h3>Old "ngIf"</h3>
+        <div class="pb-1r">
+          <div *ngIf="1 === 1">Soy <strong>1 (uno)</strong>, con "ngIf"</div>
+          <div *ngIf="1 !== 1">No soy <strong>1 (uno)</strong>, con "ngIf"</div>
+        </div>
+        <div>
+          <div
+            *ngIf="framework === 'Angular' && version > 17; else miBloqueSimple"
+          >
+            Soy {{ framework }} y soy la versión mayor a 17
+          </div>
+          <ng-template #miBloqueSimple>
+            Soy {{ framework }} y soy la versión menor a 18
+          </ng-template>
+        </div>
+      </div>
+      <div>
+        <h3>New "If"</h3>
+        <div class="pb-1r">
+          @if(1 === 1) {
+          <div>Soy <strong>1 (uno)</strong>, con "if"</div>
+          } @else {
+          <div>No soy <strong>1 (uno)</strong>, con "if"</div>
+          }
+        </div>
+        <div>
+          @if(framework === 'Angular' && version > 17) {
+          <div>Soy {{ framework }} y soy la versión mayor a 17</div>
+          } @else {
+          <div>Soy {{ framework }} y soy la versión menor a 18</div>
+          }
+        </div>
+      </div>
+    </div>
+    <!-- end Condicional IF -->
+    <!-- start Condicional IF con Objeto -->
+    <div class="p-1r border">
+      <h2>Condicional IF con Objeto</h2>
+      <div style="width: 100px; height: 100px">
+        <img
+          [src]="person().avatar"
+          style="width: 100%; height: 100%"
+          alt="Placeholder Image"
+        />
+      </div>
+      <div>
+        <label for="name">Nombre:</label>
+        <input
+          type="text"
+          [value]="person().name"
+          (change)="changeName($event)"
+        />
+      </div>
+      <div>
+        <label for="name">Edad:</label>
+        <input
+          type="number"
+          [value]="person().age"
+          (change)="changeAge($event)"
+        />
+      </div>
+      <div class="d-flex">
+        <button class="btn" (click)="clickHandler()">Click me</button>
+        <button class="btn ml-1r" (dblclick)="clickHandler()">
+          Double Click
+        </button>
+      </div>
+
+      <div>
+        <p>Hola, soy {{ person().name }} y mi edad es {{ person().age }}</p>
+      </div>
+      <div>
+        <h3>Old "ngIf"</h3>
+        <div class="pb-1r">
+          <div *ngIf="1 === 1">Soy <strong>1 (uno)</strong>, con "ngIf"</div>
+          <div *ngIf="1 !== 1">No soy <strong>1 (uno)</strong>, con "ngIf"</div>
+        </div>
+        <div>
+          <div
+            *ngIf="person().name === 'Luis' && person().age > 18; else miBloque"
+          >
+            Soy {{ person().name }} y soy mayor de 18
+          </div>
+          <ng-template #miBloque>
+            Soy {{ person().name }} y soy menor de 19
+          </ng-template>
+        </div>
+      </div>
+      <div>
+        <h3>New "If"</h3>
+        <div class="pb-1r">
+          @if(1 === 1) {
+          <div>Soy <strong>1 (uno)</strong>, con "if"</div>
+          } @else {
+          <div>No soy <strong>1 (uno)</strong>, con "if"</div>
+          }
+        </div>
+        <div>
+          @if(person().name === 'Luis' && person().age > 18) {
+          <div>Soy {{ person().name }} y soy mayor a 18</div>
+          } @else {
+          <div>Soy {{ person().name }} y soy no soy mayor a 18</div>
+          }
+        </div>
+      </div>
+    </div>
+    <!-- end Condicional IF con Objeto -->
+    <!-- start Condicional Switch -->
+    <div class="p-1r border">
+      <h2>Condicional Switch</h2>
+
+      <div>
+        <p class="m-0">(keydown)</p>
+        <input
+          type="text"
+          [value]="person().name"
+          (keydown)="keydownHandler($event)"
+        />
+        <p class="m-0 mt-1r">(keydown.shift)</p>
+        <input
+          type="text"
+          [value]="person().name"
+          (keydown.shift.t)="clickHandler()"
+        />
+      </div>
+
+      <div>
+        <h3>Old "Switch"</h3>
+        <div>
+          <div [ngSwitch]="person().name">
+            <p *ngSwitchCase="'luis'">Yo soy luis</p>
+            <p *ngSwitchCase="'julian'">Yo soy julian</p>
+            <p *ngSwitchCase="'ana'">Yo soy ana</p>
+            <p *ngSwitchCase="'valentina'">Yo soy valentina</p>
+            <p *ngSwitchDefault>Yo no soy nadie</p>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <h3>New "Switch"</h3>
+        @switch (person().name) {
+          @case ('Luis') {<p>Yo soy Luis</p>}
+          @case ('julian') {<p>Yo soy julian</p>}
+          @case ('ana') {<p>Yo soy ana</p>}
+          @case ('valentina') {<p>Yo soy valentina</p>}
+          @default {<p>Yo no soy nadie</p>}
+        }
+      </div>
+    </div>
+    <!-- end Condicional Switch -->
+    <!-- start Condicional Bucles -->
+    <div class="p-1r border">
+      <h2>Bucles</h2>
+      <div>
+        <h3>Old "For": "ngFor"</h3>
+        <div>
+          <ul>
+            <li *ngFor="let task of tasksSimples">
+              {{ task }}
+            </li>
+          </ul>
+
+          <ul>
+            <li *ngFor="let task of tasks">
+              {{ task.title }} ({{
+                task.completed ? "Completada" : "Pendiente"
+              }})
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <h3>New "For"</h3>
+        <div>
+          <ul>
+            @for(task of tasksSimples; track task; let i = $index) {
+            <li>{{ i }} {{ task }}</li>
+            } @empty {
+            <li><strong>La lista esta en vacio</strong></li>
+            }
+          </ul>
+
+          <ul>
+            @for(task of tasks; track task; let i = $index) {
+            <li>
+              {{ i }} {{ task.title }} ({{
+                task.completed ? "Completada" : "Pendiente"
+              }})
+            </li>
+            } @empty {
+            <li><strong>La lista esta en vacio</strong></li>
+            }
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- end Condicional Bucles -->
+    <!-- start Others -->
+    <!-- end Others -->
+  </div>
 
   <div style="display: flex; justify-content: space-around">
     <div>
-      <ul>
-        <li *ngFor="let task of tasksSimples">
-          {{ task }}
-        </li>
-      </ul>
-
-      <ul>
-        <li *ngFor="let task of tasks">
-          {{ task.title }} - {{ task.completed ? "Completada" : "Pendiente" }}
-        </li>
-      </ul>
-    </div>
-    <div>
       <h4>{{ "Hola".repeat(5) }}</h4>
       <p>La suma de 3 + 3 es {{ 3 + 3 }}</p>
-      <p>Hola soy {{ name }} y mi edad es {{ age }}</p>
-    </div>
-  </div>
-
-  <hr />
-
-  <div style="display: flex">
-    <div style="width: 50%">
-      <div style="width: 300px; height: 300px; padding: 1rem">
-        <img [src]="img" alt="Placeholder Image" srcset="" />
-      </div>
-      <input type="text" [value]="name" />
-      <button [disabled]="disabled">Click me</button>
-    </div>
-    <div style="width: 50%">
-      <div style="width: 300px; height: 300px; padding: 1rem">
-        <img
-          [src]="person.avatar"
-          alt="Placeholder Image"
-          srcset=""
-          style="width: 300px; height: 300px"
-        />
-      </div>
-      <input type="text" [value]="person.name" />
-      <button (click)="clickHandler()">Click me</button>
-      <button (dblclick)="clickHandler()">Double Click</button>
-      <p>(change)</p>
-      <input type="number" [value]="person.age" (change)="changeHandler($event)">
-      <p>(change)</p>
-      <input type="text" [value]="person.name" (change)="changeHandler($event)">
-      <p>(keydown)</p>
-      <input type="text" [value]="person.name" (keydown)="keydownHandler($event)">
-      <p>(keydown.shift)</p>
-      <input type="text" [value]="person.name" (keydown.shift.t)="clickHandler()">
     </div>
   </div>
 </div>
