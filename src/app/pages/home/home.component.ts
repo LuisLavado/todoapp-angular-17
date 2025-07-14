@@ -14,7 +14,6 @@ export class HomeComponent {
     { id: Date.now(), title: 'Tarea 1', completed: false },
     { id: Date.now(), title: 'Tarea 2', completed: false },
     { id: Date.now(), title: 'Tarea 3', completed: false },
-    { id: Date.now(), title: 'Tarea 4', completed: false }
   ]);
 
   changeHandler(event: Event) {

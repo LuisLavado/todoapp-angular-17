@@ -12,6 +12,7 @@ export class LabsComponent {
   title = 'Laboratorio Angular 17';
   framework = 'Angular';
   version = 17;
+  img = 'https://angular.io/assets/images/logos/angular/angular.svg';
   disabled = true;
   tasks = [
     { id: 1, title: 'Tarea 1', completed: false },
@@ -23,7 +24,7 @@ export class LabsComponent {
     'Tarea 2',
     'Tarea 3',
   ];
-  img = 'https://angular.io/assets/images/logos/angular/angular.svg';
+  nameSignal = signal('Luis');
   person = signal({
     name: 'Luis',
     age: 20,
@@ -38,6 +39,13 @@ export class LabsComponent {
     const input = event.target as HTMLInputElement;
     const newValue = input.value;
     this.framework = newValue;
+  }
+
+  changeHandlerSignal(event: Event) {
+    const input = event.target as HTMLInputElement;
+    const newValue = input.value;
+    console.log(newValue);
+    this.nameSignal.set(newValue);
   }
 
   keydownHandler(event: KeyboardEvent) {
@@ -58,7 +66,7 @@ export class LabsComponent {
     this.person.update(prevState => {
       return {
         ...prevState,
-        age: parseInt(newValue)
+        age: parseInt(newValue, 10)
       }
     });
   }
