@@ -188,6 +188,15 @@
       </div>
     </div>
     <!-- end Condicional Switch -->
+    <!-- start Formularios Reactivos -->
+    <div class="p-1r border">
+      <h2>Reactive Forms</h2>
+      <div>
+        <input type="color" [formControl]="colorCtrl" />
+        <p>Color: {{ colorCtrl.value }}</p>
+      </div>
+    </div>
+    <!-- end Formularios Reactivos -->
     <!-- start Condicional Bucles -->
     <div class="p-1r border">
       <h2>Bucles</h2>
@@ -241,9 +250,17 @@
       <div>
         <h4>Test Signals</h4>
         <p class="m-0">(change)</p>
-        <input type="text" [value]="nameSignal()" (click)="changeHandlerSignal($event)" />
+        <input
+          type="text"
+          [value]="nameSignal()"
+          (click)="changeHandlerSignal($event)"
+        />
         <p class="m-0">(keydown)</p>
-        <input type="text" [value]="nameSignal()" (keydown)="changeHandlerSignal($event)" />
+        <input
+          type="text"
+          [value]="nameSignal()"
+          (keydown)="changeHandlerSignal($event)"
+        />
         <p>nameSignal: {{ nameSignal() }}</p>
       </div>
       <div style="display: flex; justify-content: space-around">
