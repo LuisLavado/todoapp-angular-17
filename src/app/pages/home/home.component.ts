@@ -51,4 +51,19 @@ export class HomeComponent {
       })
     });
   }
+
+  updateTaskEditingMode(index: number) {
+    this.tasks.update((tasks) => {
+      return tasks.map((task, positon) => {
+        if (positon === index) {
+          return {
+            ...task,
+            editing: true
+          }
+        }
+
+        return task;
+      })
+    });
+  }
 }

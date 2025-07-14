@@ -9,7 +9,10 @@ import { CommonModule } from '@angular/common';
   styleUrl: './labs.component.css'
 })
 export class LabsComponent {
-  welcome = 'Bienvenido a mi aplicación de tareas';
+  title = 'Laboratorio Angular 17';
+  framework = 'Angular';
+  version = 17;
+  disabled = true;
   tasks = [
     { id: 1, title: 'Tarea 1', completed: false },
     { id: 2, title: 'Tarea 2', completed: true },
@@ -20,13 +23,10 @@ export class LabsComponent {
     'Tarea 2',
     'Tarea 3',
   ];
-  name = 'Luis Lavado';
-  age = 30;
-  disabled = true;
   img = 'https://angular.io/assets/images/logos/angular/angular.svg';
   person = signal({
-    name: 'Luis Lavado Llaro',
-    age: 30,
+    name: 'Luis',
+    age: 20,
     avatar: 'https://w3schools.com/howto/img_avatar.png'
   });
 
@@ -37,15 +37,22 @@ export class LabsComponent {
   changeHandler(event: Event) {
     const input = event.target as HTMLInputElement;
     const newValue = input.value;
-    this.name = newValue;
+    this.framework = newValue;
   }
 
   keydownHandler(event: KeyboardEvent) {
     const input = event.target as HTMLInputElement;
-    console.log(input.value);
+    const newValue = input.value;
+    console.log(newValue);
+    this.person.update(prevState => {
+      return {
+        ...prevState,
+        name: newValue
+      }
+    });
   }
 
- changeAge(event: Event) {
+  changeAge(event: Event) {
     const input = event.target as HTMLInputElement;
     const newValue = input.value;
     this.person.update(prevState => {
@@ -54,8 +61,8 @@ export class LabsComponent {
         age: parseInt(newValue)
       }
     });
-  }  
- 
+  }
+
   changeName(event: Event) {
     const input = event.target as HTMLInputElement;
     const newValue = input.value;
@@ -65,5 +72,5 @@ export class LabsComponent {
         name: newValue
       }
     });
-  }  
+  }
 }
