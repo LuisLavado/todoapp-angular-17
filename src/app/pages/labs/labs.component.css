@@ -9,8 +9,14 @@
 .f-wrap {
     flex-wrap: wrap;
 }
+
 .f-nowrap {
     flex-wrap: nowrap;
+}
+
+/* start padding */
+.p-0 {
+    padding: o;
 }
 
 .p-1r {
@@ -55,6 +61,7 @@
 .mb-1r {
     margin-bottom: 1rem;
 }
+
 /* start margin */
 
 .border {

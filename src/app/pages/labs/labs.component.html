@@ -174,13 +174,17 @@
 
       <div>
         <h3>New "Switch"</h3>
-        @switch (person().name) {
-          @case ('Luis') {<p>Yo soy Luis</p>}
-          @case ('julian') {<p>Yo soy julian</p>}
-          @case ('ana') {<p>Yo soy ana</p>}
-          @case ('valentina') {<p>Yo soy valentina</p>}
-          @default {<p>Yo no soy nadie</p>}
-        }
+        @switch (person().name) { @case ('Luis') {
+        <p>Yo soy Luis</p>
+        } @case ('julian') {
+        <p>Yo soy julian</p>
+        } @case ('ana') {
+        <p>Yo soy ana</p>
+        } @case ('valentina') {
+        <p>Yo soy valentina</p>
+        } @default {
+        <p>Yo no soy nadie</p>
+        } }
       </div>
     </div>
     <!-- end Condicional Switch -->
@@ -232,13 +236,23 @@
     </div>
     <!-- end Condicional Bucles -->
     <!-- start Others -->
-    <!-- end Others -->
-  </div>
-
-  <div style="display: flex; justify-content: space-around">
-    <div>
-      <h4>{{ "Hola".repeat(5) }}</h4>
-      <p>La suma de 3 + 3 es {{ 3 + 3 }}</p>
+    <div class="p-1r border">
+      <h2>Others</h2>
+      <div>
+        <h4>Test Signals</h4>
+        <p class="m-0">(change)</p>
+        <input type="text" [value]="nameSignal()" (click)="changeHandlerSignal($event)" />
+        <p class="m-0">(keydown)</p>
+        <input type="text" [value]="nameSignal()" (keydown)="changeHandlerSignal($event)" />
+        <p>nameSignal: {{ nameSignal() }}</p>
+      </div>
+      <div style="display: flex; justify-content: space-around">
+        <div>
+          <h4>{{ "Hola".repeat(5) }}</h4>
+          <p>La suma de 3 + 3 es {{ 3 + 3 }}</p>
+        </div>
+      </div>
     </div>
+    <!-- end Others -->
   </div>
 </div>
