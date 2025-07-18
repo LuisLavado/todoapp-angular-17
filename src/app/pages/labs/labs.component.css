@@ -73,3 +73,21 @@
     border: 1px solid #121212;
     padding: .5rem;
 }
+
+/* others */
+.box {
+    height: 10px;
+    display: block;
+    background-color: red;
+}
+
+.message-error {
+    background-color: red;
+    color: white;
+    opacity: 0;
+    transition: all linear .5s;
+}
+
+.message-error.show {
+    opacity: 1;
+}
